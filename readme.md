@@ -7,4 +7,4 @@ An online recipe database that contains three tables and one join table: Ingredi
 
 [Link to user stories](documentation)](https://drive.google.com/open?id=13iOfdFSeoOjdRFriasiORIJfUgJH6awK "Documentation - User stories")
 
-{Link to Heroku app](https://dashboard.heroku.com/apps/tsoha-python-demo1 "Online Recipes - Heroku app")
+[Link to Heroku app](https://dashboard.heroku.com/apps/tsoha-python-demo1 "Online Recipes - Heroku app")
