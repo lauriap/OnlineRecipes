@@ -1,3 +1,4 @@
+                                                                                       
 # User stories for Online Recipes
 
 ## User types
@@ -21,7 +22,7 @@ As a User, I am able to log in to the website using my own nickname and password
 
 ### Adding recipes to the database
 
-As a User, I am able to add my own recipes to the database. Adding recipes includes being able to add ingredients, ingredient amounts, time required and meal type (starter, main course, dessert) related to the recipe.
+As a User, I am able to add my own recipes to the database. Adding recipes includes being able to add ingredients, ingredient amounts, time required and meal type (starter, main course, dessert) related $
 
 ### Listing recipes
 
