@@ -1,14 +1,18 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h2>List of all recipes</h2>
+<p></p>
   <table>
     <tr>
+      <th>#</th>
       <th>Name</th>
       <th>Time required</th>
       <th>Instructions</th>
     </tr>
     {% for recipe in recipes %}
     <tr>
+      <td>{{ recipe.id }}</td>
       <td>{{ recipe.name }}</td>
       <td>{{ recipe.timeNeeded }}</td>
       <td>{{ recipe.instructions }}</td>

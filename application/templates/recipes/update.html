@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Updating a recipe</h2>
+<p>Insert the number of the recipe you want to edit and then insert the changes you want to make. Leaving a space blank means no changes will be made.</p>
+<form method="POST" action="{{ url_for('recipes_update') }}">
+  <p>Number <input type="text" name="id" /></p>
+  <p>New name <input type="text" name="name"/></p>
+  <p>New time needed <input type="text" name="timeNeeded" /></p>
+  <p>New instructions <input type="text" name="instructions" /></p>
+  <input type="submit" value="Update recipe"/>
+</form>
+
+<table>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Time required</th>
+      <th>Instructions</th>
+    </tr>
+    {% for recipe in recipes %}
+    <tr>
+      <td>{{ recipe.id }}</td>
+      <td>{{ recipe.name }}</td>
+      <td>{{ recipe.timeNeeded }}</td>
+      <td>{{ recipe.instructions }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+{% endblock %}
+
