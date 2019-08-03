@@ -1,6 +1,8 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.recipes.models import Recipe
+from application.recipes.forms import RecipeForm
+
 
 @app.route("/recipes", methods=["GET"])
 def recipes_index():
@@ -8,13 +10,12 @@ def recipes_index():
 
 @app.route("/recipes/new/")
 def recipes_form():
-    return render_template("recipes/new.html")
+    return render_template("recipes/new.html", form = RecipeForm())
 
 @app.route("/recipes/update/")
 def recipes_updateform():
     return render_template("recipes/update.html", recipes = Recipe.query.all())
 
-#TYÖN ALLA
 @app.route("/recipes/update/", methods=["POST"])
 def recipes_update():
 
@@ -38,11 +39,15 @@ def recipes_update():
 
     return redirect(url_for("recipes_index"))
 
-## PÄÄTTYY
-
 @app.route("/recipes/", methods=["POST"])
 def recipes_create():
-    r = Recipe(request.form.get("name"), request.form.get("timeNeeded"), request.form.get("instructions"))
+
+    form = RecipeForm(request.form)
+
+    if not form.validate():
+        return render_template("recipes/new.html", form = form)
+
+    r = Recipe(form.name.data, form.timeNeeded.data, form.instructions.data)
 
     db.session().add(r)
     db.session().commit()
