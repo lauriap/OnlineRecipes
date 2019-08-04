@@ -1,5 +1,7 @@
-from application import app, db
 from flask import redirect, render_template, request, url_for
+from flask_login import login_required
+
+from application import app, db
 from application.recipes.models import Recipe
 from application.recipes.forms import RecipeForm
 
@@ -9,14 +11,17 @@ def recipes_index():
     return render_template("recipes/list.html", recipes = Recipe.query.all())
 
 @app.route("/recipes/new/")
+@login_required
 def recipes_form():
     return render_template("recipes/new.html", form = RecipeForm())
 
 @app.route("/recipes/update/")
+@login_required
 def recipes_updateform():
     return render_template("recipes/update.html", recipes = Recipe.query.all())
 
 @app.route("/recipes/update/", methods=["POST"])
+@login_required
 def recipes_update():
 
     recipe_id = request.form.get("id")
@@ -40,6 +45,7 @@ def recipes_update():
     return redirect(url_for("recipes_index"))
 
 @app.route("/recipes/", methods=["POST"])
+@login_required
 def recipes_create():
 
     form = RecipeForm(request.form)
