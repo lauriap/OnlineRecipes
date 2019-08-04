@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<h2>Sign up to Online Recipes</h2>
+<p>Insert your name, username and password to sign up to Online Recipes.</p>
+<form method="POST" action="{{ url_for('signup_create') }}">
+  <p>Name <input type="text" name="name"/></p>
+  <p>Username <input type="text" name="username" /></p>
+  <p>Password <input type="text" name="password" /></p>
+  <input type="submit" value="Sign up"/>
+</form>
+{% endblock %}
