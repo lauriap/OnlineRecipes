@@ -1,10 +1,10 @@
-from flask_wtf import SignUpForm
-from wtforms import StringField
+from flask_wtf import FlaskForm
+from wtforms import StringField, validators
 
 class SignUpForm(FlaskForm):
-    name = StringField("Name")
-    nickname = StringField("Nickname")
-    password = StringField("Password")
- 
+    name = StringField("Name", [validators.Length(min=1)])
+    username = StringField("Username", [validators.Length(min=1)])
+    password = StringField("Password", [validators.Length(min=1)])
+
     class Meta:
         csrf = False
