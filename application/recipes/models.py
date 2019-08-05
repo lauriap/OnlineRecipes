@@ -7,6 +7,9 @@ class Recipe(db.Model):
     instructions = db.Column(db.String(1000), nullable=False)
     #MUISTA LISÄTÄ TÄNNE MYÖHEMMIN MYÖS FOREIGN KEYT USER_ID (JA COURSE_ID!)
 
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+                           nullable=False)
+
     def __init__(self, name, timeNeeded, instructions):
         self.name = name
         self.timeNeeded = timeNeeded

@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from application import app, db
 from application.recipes.models import Recipe
@@ -54,6 +54,7 @@ def recipes_create():
         return render_template("recipes/new.html", form = form)
 
     r = Recipe(form.name.data, form.timeNeeded.data, form.instructions.data)
+    r.account_id = current_user.id
 
     db.session().add(r)
     db.session().commit()
