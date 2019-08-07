@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<h2>Deleting a recipe</h2>
+<p>Insert the number of the recipe you want to delete.</p>
+<form method="POST" action="{{ url_for('recipes_delete') }}">
+  <table>
+    <tr>
+      <td>
+	 {{ form.id.label }}
+      </td>
+      <td>
+         {{ form.id }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.id.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	 <input type="submit" value="Delete recipe"/>
+      </td>
+    </tr>
+
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Time required</th>
+      <th>Instructions</th>
+    </tr>
+    {% for recipe in recipes %}
+    <tr>
+      <td>{{ recipe.id }}</td>
+      <td>{{ recipe.name }}</td>
+      <td>{{ recipe.timeNeeded }}</td>
+      <td>{{ recipe.instructions }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</form>
+{% endblock %}

@@ -9,3 +9,10 @@ class RecipeForm(FlaskForm):
     class Meta:
         csrf = False
 
+
+class DeleteForm(FlaskForm):
+    id = IntegerField("Recipe number")
+
+    class Meta:
+        csrf = False
+
