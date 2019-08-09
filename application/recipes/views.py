@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 
 from application import app, db
 from application.recipes.models import Recipe
-from application.recipes.forms import RecipeForm, DeleteForm
+from application.recipes.forms import RecipeForm, DeleteForm, UpdateForm
 
 
 @app.route("/recipes", methods=["GET"])
@@ -18,27 +18,29 @@ def recipes_form():
 @app.route("/recipes/update/")
 @login_required
 def recipes_updateform():
-    return render_template("recipes/update.html", recipes = Recipe.query.all())
+    return render_template("recipes/update.html", form = UpdateForm(), recipes = Recipe.query.all())
 
 @app.route("/recipes/update/", methods=["POST"])
 @login_required
 def recipes_update():
 
-    recipe_id = request.form.get("id")
+    form = UpdateForm(request.form)
+
+    if not form.validate():
+        return redirect(url_for("recipes_updateform"))
+
+#lisää tähän if-lause: jos id ylittää tietokannan maksimin, palauta virhe.
+    recipe_id = form.id.data
     recipe = Recipe.query.filter_by(id=recipe_id).first()
 
-    newName = request.form.get("name")
-    newTimeNeeded = request.form.get("timeNeeded")
-    newInstructions = request.form.get("instructions")
+    if form.name.data != "":
+        recipe.name = form.name.data
 
-    if newName != "":
-        recipe.name = newName
+    if form.timeNeeded.data is not None:
+        recipe.timeNeeded = form.timeNeeded.data
 
-    if newTimeNeeded != "":
-        recipe.timeNeeded = newTimeNeeded
-
-    if newInstructions != "":
-        recipe.instructions = newInstructions
+    if form.instructions.data != "":
+        recipe.instructions = form.instructions.data
 
     db.session().commit()
 

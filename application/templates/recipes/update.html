@@ -4,12 +4,77 @@
 <h2>Updating a recipe</h2>
 <p>Insert the number of the recipe you want to edit and then insert the changes you want to make. Leaving a space blank means no changes will be made.</p>
 <form method="POST" action="{{ url_for('recipes_update') }}">
-  <p>Number <input type="text" name="id" /></p>
-  <p>New name <input type="text" name="name"/></p>
-  <p>New time needed <input type="text" name="timeNeeded" /></p>
-  <p>New instructions <input type="text" name="instructions" /></p>
-  <input type="submit" value="Update recipe"/>
-</form>
+  <table>
+    <tr>
+      <td>
+         {{ form.id.label }}
+      </td>
+      <td>
+         {{ form.id }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.id.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>    
+    <tr>
+      <td>
+         {{ form.name.label }}
+      </td>
+      <td>
+         {{ form.name }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+         {{ form.timeNeeded.label }}
+      </td>
+      <td>
+         {{ form.timeNeeded }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.timeNeeded.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+         {{ form.instructions.label }}
+      </td>
+      <td>
+         {{ form.instructions }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.instructions.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <input type="submit" value="Update recipe"/>
+      </td>
+    </tr>
+  </table>
+
+<p></p>
+<p></p>
+<p></p>
 
 <table>
     <tr>
