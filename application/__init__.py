@@ -26,6 +26,9 @@ from application.auth import views
 
 from application.signup import views
 
+from application.ingredients import models
+from application.ingredients import views
+
 #Login
 from application.auth.models import User
 from os import urandom

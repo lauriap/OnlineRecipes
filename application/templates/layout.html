@@ -17,14 +17,24 @@
 
       <p></p>
 
-      <p>Menu</p>
+      <p>Recipes</p>
       <ul>
 	<li><a href="{{ url_for('recipes_index') }}">List recipes</a></li>
 	<li><a href="{{ url_for('recipes_form') }}">Add a recipe</a></li>
 	<li><a href="{{ url_for('recipes_updateform') }}">Update a recipe</a></li>
         <li><a href="{{ url_for('recipes_delete') }}">Delete a recipe</a></li>
-
       </ul>
+
+<p></p>
+
+      <p>Ingredients</p>
+      <ul>
+        <li><a href="{{ url_for('ingredients_index') }}">List ingredients</a></li>
+        <li><a href="{{ url_for('ingredients_form') }}">Add an ingredient</a></li>
+        <li><a href="{{ url_for('ingredients_updateform') }}">Update an ingredient</a></li>
+        <li><a href="{{ url_for('ingredients_delete') }}">Delete an ingredient</a></li>
+      </ul>
+
       
       {% block body %}
       <p>

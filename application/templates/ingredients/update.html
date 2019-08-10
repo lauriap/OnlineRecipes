@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Updating an ingredient</h2>
+<p>Insert the number of the ingredient you want to edit and then insert the changes you want to make. Leaving a space blank means no changes will be made.</p>
+<form method="POST" action="{{ url_for('ingredients_update') }}">
+  <table>
+    <tr>
+      <td>
+         {{ form.id.label }}
+      </td>
+      <td>
+         {{ form.id }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.id.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>    
+    <tr>
+      <td>
+         {{ form.name.label }}
+      </td>
+      <td>
+         {{ form.name }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Update ingredient"/>
+      </td>
+    </tr>
+  </table>
+
+<p></p>
+<p></p>
+<p></p>
+
+<table>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+    </tr>
+    {% for ingredient in ingredients %}
+    <tr>
+      <td>{{ ingredient.id }}</td>
+      <td>{{ ingredient.name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+{% endblock %}
+

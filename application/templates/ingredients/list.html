@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>List of all ingredients</h2>
+<p></p>
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+    </tr>
+    {% for ingredient in ingredients %}
+    <tr>
+      <td>{{ ingredient.id }}</td>
+      <td>{{ ingredient.name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
