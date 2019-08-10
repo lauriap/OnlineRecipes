@@ -8,7 +8,7 @@ An online recipe database that contains three tables and one join table: Ingredi
 Test username: testinick
 Test password: testi
 
-[Link to database ERD](https://drive.google.com/open?id=1Ey5wzfgaTouMsKQO3mcsddd6m_lKUjZS "Database ERD")
+[Link to database ERD](https://drive.google.com/open?id=1AzLPQQYsGIy-5sODw_2pF6BCGAdU5i-I "Database ERD")
 
 [Link to user stories](https://github.com/lauriap/OnlineRecipes/blob/master/documentation/user_stories.md "Documentation - User stories")
 
