@@ -18,7 +18,7 @@ def ingredients_form():
 @app.route("/ingredients/update/")
 @login_required
 def ingredients_updateform():
-    return render_template("ingredients/update.html", Ingredient.query.order_by(Ingredient.id).all(), form = UpdateIngredientForm())
+    return render_template("ingredients/update.html", ingredients = Ingredient.query.order_by(Ingredient.id).all(), form = UpdateIngredientForm())
 
 @app.route("/ingredients/update/", methods=["POST"])
 @login_required
@@ -60,7 +60,7 @@ def ingredients_create():
 @login_required
 def ingredients_deleteform():
 
-    return render_template("ingredients/delete.html", Ingredient.query.order_by(Ingredient.id).all(), form = DeleteIngredientForm())
+    return render_template("ingredients/delete.html", ingredients = Ingredient.query.order_by(Ingredient.id).all(), form = DeleteIngredientForm())
 
 @app.route("/ingredients/delete", methods=["POST"])
 @login_required
