@@ -8,7 +8,7 @@ from application.recipes.forms import RecipeForm, DeleteForm, UpdateForm
 
 @app.route("/recipes", methods=["GET"])
 def recipes_index():
-    return render_template("recipes/list.html", recipes = Recipe.query.all())
+    return render_template("recipes/list.html", recipes = Recipe.query.order_by(Recipe.id).all())
 
 @app.route("/recipes/new/")
 @login_required
@@ -18,7 +18,7 @@ def recipes_form():
 @app.route("/recipes/update/")
 @login_required
 def recipes_updateform():
-    return render_template("recipes/update.html", form = UpdateForm(), recipes = Recipe.query.all())
+    return render_template("recipes/update.html", form = UpdateForm(), recipes = Recipe.query.order_by(Recipe.id).all())
 
 @app.route("/recipes/update/", methods=["POST"])
 @login_required
@@ -67,7 +67,7 @@ def recipes_create():
 @login_required
 def recipes_deleteform():
 
-    return render_template("recipes/delete.html", form = DeleteForm(), recipes = Recipe.query.all())
+    return render_template("recipes/delete.html", form = DeleteForm(), recipes = Recipe.query.order_by(Recipe.id).all())
 
 @app.route("/recipes/delete", methods=["POST"])
 @login_required
