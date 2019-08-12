@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h2>Top contributors</h2>
+<p></p>
+
+<table>
+  <tr>
+    <td>
+      <h3>Name</h3>
+    </td>
+    <td>
+      <h3>Number of recipes</h3>
+    </td>
+  </tr>
+
+  {% if topcontributors is defined %}
+  {% for user in topcontributors %}
+    <tr>
+      <td>
+        {{ user.name }}
+      </td>
+      <td>
+        {{ user.recipecount }}
+      </td>
+    </tr>
+  {% endfor %}
+  {% endif %}     
+</table>
+
+<!---
+{% if topcontributors is defined %}
+<ul>
+  {% for user in topcontributors %}
+  <li>
+    {{user.name}} {{user.recipecount}}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endif %}
+-->
+{% endblock %}
+
+
+

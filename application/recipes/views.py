@@ -2,11 +2,15 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
 from application import app, db
-from application.recipes.models import Recipe
+
+from application.recipes.models import Recipe, RecipeIngredient
 from application.recipes.forms import RecipeForm, DeleteForm, UpdateForm
 
+from application.ingredients.models import Ingredient
 
-@app.route("/recipes", methods=["GET"])
+from application.auth.models import User
+
+@app.route("/recipes/", methods=["GET"])
 def recipes_index():
     return render_template("recipes/list.html", recipes = Recipe.query.order_by(Recipe.id).all())
 
@@ -50,6 +54,8 @@ def recipes_update():
 @login_required
 def recipes_create():
 
+# Muuta RecipeForm ja muut ja lisää sinne oma kohta RecipeIngredientin luomiselle. Esim. 10 RecipeIngredientiä kerralla niin homma toimii. Etsi reseptiä nimen perusteella.
+
     form = RecipeForm(request.form)
 
     if not form.validate():
@@ -59,9 +65,97 @@ def recipes_create():
     r.account_id = current_user.id
 
     db.session().add(r)
+    db.session().flush()
+
+    if form.ingredient_name1.data and form.quantity1.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name1.data).first()
+        recipeing = RecipeIngredient(form.quantity1.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name2.data and form.quantity2.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name2.data).first()
+        recipeing = RecipeIngredient(form.quantity2.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name3.data and form.quantity3.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name3.data).first()
+        recipeing = RecipeIngredient(form.quantity3.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name4.data and form.quantity4.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name4.data).first()
+        recipeing = RecipeIngredient(form.quantity4.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name5.data and form.quantity5.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name5.data).first()
+        recipeing = RecipeIngredient(form.quantity5.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name6.data and form.quantity6.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name6.data).first()
+        recipeing = RecipeIngredient(form.quantity6.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name7.data and form.quantity7.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name7.data).first()
+        recipeing = RecipeIngredient(form.quantity7.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name8.data and form.quantity8.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name8.data).first()
+        recipeing = RecipeIngredient(form.quantity8.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name9.data and form.quantity9.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name9.data).first()
+        recipeing = RecipeIngredient(form.quantity9.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
+    if form.ingredient_name10.data and form.quantity10.data:
+        ing = Ingredient.query.filter_by(name=form.ingredient_name10.data).first()
+        recipeing = RecipeIngredient(form.quantity10.data)
+
+        recipeing.recipe_id = r.id
+        recipeing.ingredient_id = ing.id
+        db.session().add(recipeing)
+
     db.session().commit()
 
     return redirect(url_for("recipes_index"))
+
+@app.route("/recipes/topcontributors/", methods=["GET"])
+@login_required
+def recipes_topcontributors():
+
+    return render_template("recipes/topcontributors.html", topcontributors=User.list_top_contributors())
 
 @app.route("/recipes/delete/", methods=["GET"])
 @login_required

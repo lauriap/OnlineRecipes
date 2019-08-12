@@ -1,5 +1,7 @@
 from application import db
 
+from sqlalchemy.sql import text
+
 class User(db.Model):
 
     __tablename__ = "account"
@@ -31,3 +33,19 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+    @staticmethod
+    def list_top_contributors():
+        stmt = text("SELECT Account.id, Account.name, COUNT(Recipe.id) FROM Account"
+                    " LEFT JOIN Recipe ON Recipe.account_id = Account.id"
+                    " GROUP BY Account.name")
+        res = db.engine.execute(stmt)
+        print(res)
+
+        response = []
+        for row in res:
+            response.append({"name":row[1], "recipecount":row[2]})
+
+        print(response)
+
+        return response
