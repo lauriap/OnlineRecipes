@@ -38,7 +38,7 @@ class User(db.Model):
     def list_top_contributors():
         stmt = text("SELECT Account.id, Account.name, COUNT(Recipe.id) FROM Account"
                     " LEFT JOIN Recipe ON Recipe.account_id = Account.id"
-                    " GROUP BY Account.name")
+                    " GROUP BY account.id, account.name;")
         res = db.engine.execute(stmt)
         print(res)
 
