@@ -172,8 +172,8 @@ def recipes_delete():
 
     del_recipe = form.id.data
 
-    Recipe.query.filter_by(id=del_recipe.get_id()).delete()
     RecipeIngredient.query.filter_by(recipe_id=del_recipe.get_id()).delete()
+    Recipe.query.filter_by(id=del_recipe.get_id()).delete()
 
     db.session.commit()
 

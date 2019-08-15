@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.ingredients.models import Ingredient
 from application.ingredients.forms import IngredientForm, DeleteIngredientForm, UpdateIngredientForm
-
+from application.recipes.models import RecipeIngredient
 
 @app.route("/ingredients", methods=["GET"])
 def ingredients_index():
@@ -72,6 +72,7 @@ def ingredients_delete():
 
     del_ingredient = form.id.data
 
+    RecipeIngredient.query.filter_by(ingredient_id=del_ingredient.get_id()).delete()
     Ingredient.query.filter_by(id=del_ingredient.get_id()).delete()
 
     db.session.commit()
