@@ -1,41 +1,50 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextAreaField, validators
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
+
+from application.ingredients.models import Ingredient
+from application.recipes.models import Recipe
+
+def ingredient_query():
+    return Ingredient.query
+
+def recipe_query():
+    return Recipe.query
 
 class RecipeForm(FlaskForm):
     name = StringField("Recipe name", [validators.Length(min=1)])
     timeNeeded = IntegerField("Time needed", [validators.NumberRange(min=1)])
     instructions = TextAreaField("Instructions", [validators.Length(min=1)])
 
-    ingredient_name1 = StringField("Ingredient 1", [validators.Optional()])
-    quantity1 = StringField("Quantity (e.g. 3 spoonfuls)", [validators.Optional()])
+    ingredient_1 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=False)
+    quantity_1 = StringField("Quantity (e.g. 3 spoonfuls)", [validators.DataRequired()])
 
-    ingredient_name2 = StringField("Ingredient 2", [validators.Optional()])
-    quantity2 = StringField("Quantity", [validators.Optional()])
+    ingredient_2 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_2 = StringField("Quantity", [validators.Optional()])
 
-    ingredient_name3 = StringField("Ingredient 3", [validators.Optional()])
-    quantity3 = StringField("Quantity", [validators.Optional()])
+    ingredient_3 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_3 = StringField("Quantity", [validators.Optional()])
 
-    ingredient_name4 = StringField("Ingredient 4", [validators.Optional()])
-    quantity4 = StringField("Quantity", [validators.Optional()])
+    ingredient_4 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_4 = StringField("Quantity", [validators.Optional()])
 
-    ingredient_name5 = StringField("Ingredient 5", [validators.Optional()])
-    quantity5 = StringField("Quantity", [validators.Optional()])
+    ingredient_5 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_5 = StringField("Quantity", [validators.Optional()])
 
-    ingredient_name6 = StringField("Ingredient 6", [validators.Optional()])
-    quantity6 = StringField("Quantity", [validators.Optional()])
+    ingredient_6 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_6 = StringField("Quantity", [validators.Optional()])
 
-    ingredient_name7 = StringField("Ingredient 7", [validators.Optional()])
-    quantity7 = StringField("Quantity", [validators.Optional()])
+    ingredient_7 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_7 = StringField("Quantity", [validators.Optional()])
 
-    ingredient_name8 = StringField("Ingredient 8", [validators.Optional()])
-    quantity8 = StringField("Quantity", [validators.Optional()])
+    ingredient_8 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_8 = StringField("Quantity", [validators.Optional()])
 
-    ingredient_name9 = StringField("Ingredient 9", [validators.Optional()])
-    quantity9 = StringField("Quantity", [validators.Optional()])
+    ingredient_9 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_9 = StringField("Quantity", [validators.Optional()])
 
-    ingredient_name10 = StringField("Ingredient 10", [validators.Optional()])
-    quantity10 = StringField("Quantity", [validators.Optional()])
-
+    ingredient_10 = QuerySelectField(query_factory=ingredient_query, get_label="name", allow_blank=True)
+    quantity_10 = StringField("Quantity", [validators.Optional()])
 
 
     class Meta:
@@ -43,7 +52,8 @@ class RecipeForm(FlaskForm):
 
 
 class DeleteForm(FlaskForm):
-    id = IntegerField("Recipe number", [validators.NumberRange(min=1, message="Please select a recipe number from the list below.")])
+   # id = IntegerField("Recipe number", [validators.NumberRange(min=1, message="Please select a recipe number from the list below.")])
+    id = QuerySelectField(query_factory=recipe_query, get_label="id", allow_blank=True)
 
     class Meta:
         csrf = False

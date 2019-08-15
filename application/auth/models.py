@@ -40,12 +40,9 @@ class User(db.Model):
                     " LEFT JOIN Recipe ON Recipe.account_id = Account.id"
                     " GROUP BY account.id, account.name;")
         res = db.engine.execute(stmt)
-        print(res)
 
         response = []
         for row in res:
             response.append({"name":row[1], "recipecount":row[2]})
-
-        print(response)
 
         return response

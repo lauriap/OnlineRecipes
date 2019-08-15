@@ -54,8 +54,6 @@ def recipes_update():
 @login_required
 def recipes_create():
 
-# Muuta RecipeForm ja muut ja lisää sinne oma kohta RecipeIngredientin luomiselle. Esim. 10 RecipeIngredientiä kerralla niin homma toimii. Etsi reseptiä nimen perusteella.
-
     form = RecipeForm(request.form)
 
     if not form.validate():
@@ -67,84 +65,84 @@ def recipes_create():
     db.session().add(r)
     db.session().flush()
 
-    if form.ingredient_name1.data and form.quantity1.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name1.data).first()
-        recipeing = RecipeIngredient(form.quantity1.data)
+    if form.ingredient_1.data and form.quantity_1.data:
+        ing=form.ingredient_1.data
+        recipeing = RecipeIngredient(form.quantity_1.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name2.data and form.quantity2.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name2.data).first()
-        recipeing = RecipeIngredient(form.quantity2.data)
+    if form.ingredient_2.data and form.quantity_2.data:
+        ing=form.ingredient_2.data
+        recipeing = RecipeIngredient(form.quantity_2.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name3.data and form.quantity3.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name3.data).first()
-        recipeing = RecipeIngredient(form.quantity3.data)
+    if form.ingredient_3.data and form.quantity_3.data:
+        ing=form.ingredient_3.data
+        recipeing = RecipeIngredient(form.quantity_3.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name4.data and form.quantity4.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name4.data).first()
-        recipeing = RecipeIngredient(form.quantity4.data)
+    if form.ingredient_4.data and form.quantity_4.data:
+        ing=form.ingredient_4.data
+        recipeing = RecipeIngredient(form.quantity_4.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name5.data and form.quantity5.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name5.data).first()
-        recipeing = RecipeIngredient(form.quantity5.data)
+    if form.ingredient_5.data and form.quantity_5.data:
+        ing=form.ingredient_5.data
+        recipeing = RecipeIngredient(form.quantity_5.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name6.data and form.quantity6.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name6.data).first()
-        recipeing = RecipeIngredient(form.quantity6.data)
+    if form.ingredient_6.data and form.quantity_6.data:
+        ing=form.ingredient_6.data
+        recipeing = RecipeIngredient(form.quantity_6.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name7.data and form.quantity7.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name7.data).first()
-        recipeing = RecipeIngredient(form.quantity7.data)
+    if form.ingredient_7.data and form.quantity_7.data:
+        ing=form.ingredient_7.data
+        recipeing = RecipeIngredient(form.quantity_7.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name8.data and form.quantity8.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name8.data).first()
-        recipeing = RecipeIngredient(form.quantity8.data)
+    if form.ingredient_8.data and form.quantity_8.data:
+        ing=form.ingredient_8.data
+        recipeing = RecipeIngredient(form.quantity_8.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name9.data and form.quantity9.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name9.data).first()
-        recipeing = RecipeIngredient(form.quantity9.data)
+    if form.ingredient_9.data and form.quantity_9.data:
+        ing=form.ingredient_9.data
+        recipeing = RecipeIngredient(form.quantity_9.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
-    if form.ingredient_name10.data and form.quantity10.data:
-        ing = Ingredient.query.filter_by(name=form.ingredient_name10.data).first()
-        recipeing = RecipeIngredient(form.quantity10.data)
+    if form.ingredient_10.data and form.quantity_10.data:
+        ing=form.ingredient_10.data
+        recipeing = RecipeIngredient(form.quantity_10.data)
 
         recipeing.recipe_id = r.id
-        recipeing.ingredient_id = ing.id
+        recipeing.ingredient_id = ing.get_id()
         db.session().add(recipeing)
 
     db.session().commit()
@@ -172,9 +170,10 @@ def recipes_delete():
     if not form.validate():
         return render_template("recipes/delete.html", form = form)
 
-    del_id = form.id.data
+    del_recipe = form.id.data
 
-    Recipe.query.filter_by(id=del_id).delete()
+    Recipe.query.filter_by(id=del_recipe.get_id()).delete()
+    RecipeIngredient.query.filter_by(recipe_id=del_recipe.get_id()).delete()
 
     db.session.commit()
 

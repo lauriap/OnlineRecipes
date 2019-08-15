@@ -1,4 +1,7 @@
 from application import db
+from application.ingredients.models import Ingredient
+
+from sqlalchemy.sql import text
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,6 +20,9 @@ class Recipe(db.Model):
         self.timeNeeded = timeNeeded
         self.instructions = instructions
 
+    def get_id(self):
+        return self.id
+
 class RecipeIngredient(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.String(144), nullable=False)
@@ -26,3 +32,5 @@ class RecipeIngredient(db.Model):
 
     def __init__(self, amount):
         self.amount = amount
+
+

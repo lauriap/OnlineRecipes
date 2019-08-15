@@ -29,9 +29,8 @@ def ingredients_update():
     if not form.validate():
         return redirect(url_for("ingredients_updateform"))
 
-#lisää tähän if-lause: jos id ylittää tietokannan maksimin, palauta virhe.
-    ingredient_id = form.id.data
-    ingredient = Ingredient.query.filter_by(id=ingredient_id).first()
+    upd_ingredient = form.id.data
+    ingredient = Ingredient.query.filter_by(id=upd_ingredient.get_id()).first()
 
     if form.name.data != "":
         ingredient.name = form.name.data
@@ -71,10 +70,12 @@ def ingredients_delete():
     if not form.validate():
         return render_template("ingredients/delete.html", form = form)
 
-    del_id = form.id.data
+    del_ingredient = form.id.data
 
-    Ingredient.query.filter_by(id=del_id).delete()
+    Ingredient.query.filter_by(id=del_ingredient.get_id()).delete()
 
     db.session.commit()
 
     return redirect(url_for("ingredients_index"))
+
+
