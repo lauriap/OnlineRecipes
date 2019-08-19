@@ -14,6 +14,15 @@ from application.auth.models import User
 def recipes_index():
     return render_template("recipes/list.html", recipes = Recipe.query.order_by(Recipe.id).all())
 
+
+@app.route("/recipes/<recipe_id>/", methods=["GET"])
+def show_recipe(recipe_id):
+
+    query_ingredients = Ingredient.query.join(RecipeIngredient).join(Recipe).filter((RecipeIngredient.recipe_id == recipe_id) and (RecipeIngredient.ingredient_id == Ingredient.id)).all()
+
+    return render_template("recipes/fullrecipe.html", recipe=Recipe.query.filter_by(id=recipe_id).first(), recipe_ingredients=RecipeIngredient.query.filter_by(recipe_id=recipe_id).all(), ingredients=query_ingredients)
+
+
 @app.route("/recipes/new/")
 @login_required
 def recipes_form():

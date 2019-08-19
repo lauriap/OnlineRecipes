@@ -15,7 +15,7 @@ class User(db.Model):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
-    recipes = db.relationship("Recipe", backref='recipe', lazy=True)
+    recipes = db.relationship("Recipe", back_populates="account", lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name

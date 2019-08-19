@@ -52,7 +52,6 @@ class RecipeForm(FlaskForm):
 
 
 class DeleteForm(FlaskForm):
-   # id = IntegerField("Recipe number", [validators.NumberRange(min=1, message="Please select a recipe number from the list below.")])
     id = QuerySelectField(query_factory=recipe_query, get_label="id", allow_blank=True)
 
     class Meta:

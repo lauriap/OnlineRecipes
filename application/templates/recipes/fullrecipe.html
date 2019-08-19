@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h2>{{ recipe.name }}</h2>
+
+<p></p>
+
+<p>Time required: {{ recipe.timeNeeded }}</p>
+
+<p></p>
+
+<h3>Ingredients</h3>
+
+<div>
+  <table style="float: left">
+    <tr>
+      <th>Ingredient</th>
+    </tr>
+    {% for ingredient in ingredients %}
+    <tr>
+      <td>{{ ingredient.name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+&nbsp; &nbsp; &nbsp; &nbsp;
+
+  <table style="float: left">
+    <tr>
+      <th>Amount</th>
+    </tr>
+    {% for recipe_ingredient in recipe_ingredients %}
+    <tr>
+      <td>{{ recipe_ingredient.amount }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<p style="clear:both"></p><p></p>
+
+<h3 style="clear:both">Instructions</h3>
+
+<p></p>
+
+
+<p>
+{{ recipe.instructions }}
+</p>
+
+{% endblock %}
+
+
