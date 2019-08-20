@@ -12,3 +12,6 @@ class Ingredient(db.Model):
 
     def get_id(self):
         return self.id
+
+    def get_name(self):
+        return self.name

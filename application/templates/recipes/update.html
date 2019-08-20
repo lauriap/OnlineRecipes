@@ -1,28 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h2>Updating a recipe</h2>
-<p>Insert the number of the recipe you want to edit and then insert the changes you want to make. Leaving a space blank means no changes will be made.</p>
-<form method="POST" action="{{ url_for('recipes_update') }}">
+
+<h2>Editing a recipe</h2>
+<p>Make the required changes to the recipe and confirm.</p>
+<form method="POST" action="{{ url_for('recipes_update', recipe_id=recipe.id) }}">
   <table>
     <tr>
       <td>
-         {{ form.id.label }}
-      </td>
-      <td>
-         {{ form.id }}
-      </td>
-      <td>
-        <ul>
-          {% for error in form.id.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-    </tr>    
-    <tr>
-      <td>
-         {{ form.name.label }}
+	 {{ form.name.label }}
       </td>
       <td>
          {{ form.name }}
@@ -43,10 +29,10 @@
          {{ form.timeNeeded }}
       </td>
       <td>
-        <ul>
-          {% for error in form.timeNeeded.errors %}
-          <li>{{ error }}</li>
-          {% endfor %}
+	<ul>
+	  {% for error in form.timeNeeded.errors %}
+	  <li>{{ error }}</li>
+	  {% endfor %}
         </ul>
       </td>
     </tr>
@@ -66,33 +52,234 @@
       </td>
     </tr>
     <tr>
-      <td colspan="4">
-        <input type="submit" value="Update recipe"/>
+      <td>
+         {{ form.ingredient_1.label }}
+      </td>
+      <td>
+         {{ form.ingredient_1 }}
+      </td>
+      <td>
+         {{ form.quantity_1.label }}
+      </td>
+      <td>
+         {{ form.quantity_1 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_1.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
       </td>
     </tr>
-  </table>
 
-<p></p>
-<p></p>
-<p></p>
-
-<table>
     <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Time required</th>
-      <th>Instructions</th>
+      <td>
+         {{ form.ingredient_2.label }}
+      </td>
+      <td>
+         {{ form.ingredient_2 }}
+      </td>
+      <td>
+         {{ form.quantity_2.label }}
+      </td>
+      <td>
+         {{ form.quantity_2 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_2.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
     </tr>
-    {% for recipe in recipes %}
-    <tr>
-      <td>{{ recipe.id }}</td>
-      <td>{{ recipe.name }}</td>
-      <td>{{ recipe.timeNeeded }}</td>
-      <td>{{ recipe.instructions }}</td>
-    </tr>
-    {% endfor %}
-  </table>
 
+    <tr>
+      <td>
+         {{ form.ingredient_3.label }}
+      </td>
+      <td>
+         {{ form.ingredient_3 }}
+      </td>
+      <td>
+         {{ form.quantity_3.label }}
+      </td>
+      <td>
+         {{ form.quantity_3 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_3.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+         {{ form.ingredient_4.label }}
+      </td>
+      <td>
+         {{ form.ingredient_4 }}
+      </td>
+      <td>
+         {{ form.quantity_4.label }}
+      </td>
+      <td>
+         {{ form.quantity_4 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_4.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+         {{ form.ingredient_5.label }}
+      </td>
+      <td>
+         {{ form.ingredient_5 }}
+      </td>
+      <td>
+         {{ form.quantity_5.label }}
+      </td>
+      <td>
+         {{ form.quantity_5 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_5.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+         {{ form.ingredient_6.label }}
+      </td>
+      <td>
+         {{ form.ingredient_6 }}
+      </td>
+      <td>
+         {{ form.quantity_6.label }}
+      </td>
+      <td>
+         {{ form.quantity_6 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_6.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+         {{ form.ingredient_7.label }}
+      </td>
+      <td>
+         {{ form.ingredient_7 }}
+      </td>
+      <td>
+         {{ form.quantity_7.label }}
+      </td>
+      <td>
+         {{ form.quantity_7 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_7.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+         {{ form.ingredient_8.label }}
+      </td>
+      <td>
+         {{ form.ingredient_8 }}
+      </td>
+      <td>
+         {{ form.quantity_8.label }}
+      </td>
+      <td>
+         {{ form.quantity_8 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_8.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+         {{ form.ingredient_9.label }}
+      </td>
+      <td>
+         {{ form.ingredient_9 }}
+      </td>
+      <td>
+         {{ form.quantity_9.label }}
+      </td>
+      <td>
+         {{ form.quantity_9 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_9.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+         {{ form.ingredient_10.label }}
+      </td>
+      <td>
+         {{ form.ingredient_10 }}
+      </td>
+      <td>
+         {{ form.quantity_10.label }}
+      </td>
+      <td>
+         {{ form.quantity_10 }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.ingredient_10.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+
+
+    <tr>
+      <td colspan="3">
+	 <input type="submit" value="Confirm edit"/>
+      </td>
+    </tr>
+    <tr>
+  </table>
+</form>
 
 {% endblock %}
 
