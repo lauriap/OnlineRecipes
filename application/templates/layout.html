@@ -18,6 +18,25 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{ url_for('recipes_index') }}">Index <span class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recipes</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="{{ url_for('recipes_index') }}">List recipes</a>
+              <a class="dropdown-item" href="{{ url_for('recipes_form') }}">Add a recipe</a>
+              <a class="dropdown-item" href="{{ url_for('recipes_delete') }}">Delete a recipe</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ingredients</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="{{ url_for('ingredients_index') }}">List ingredients</a>
+              <a class="dropdown-item" href="{{ url_for('ingredients_form') }}">Add an ingredient</a>
+              <a class="dropdown-item" href="{{ url_for('ingredients_updateform') }}">Edit an ingredient</a>
+              <a class="dropdown-item" href="{{ url_for('ingredients_delete') }}">Delete an ingredient</a>
+            </div>
+          </li>
+
         </ul>
 
         <div class="form-inline mt-2 mt-md-0">
@@ -33,25 +52,6 @@
     </nav>
 
       <p></p>
-
-      <p>Recipes</p>
-      <ul>
-	<li><a href="{{ url_for('recipes_index') }}">List recipes</a></li>
-	<li><a href="{{ url_for('recipes_form') }}">Add a recipe</a></li>
-        <li><a href="{{ url_for('recipes_delete') }}">Delete a recipe</a></li>
-      </ul>
-
-<p></p>
-
-      <p>Ingredients</p>
-      <ul>
-        <li><a href="{{ url_for('ingredients_index') }}">List ingredients</a></li>
-        <li><a href="{{ url_for('ingredients_form') }}">Add an ingredient</a></li>
-        <li><a href="{{ url_for('ingredients_updateform') }}">Update an ingredient</a></li>
-        <li><a href="{{ url_for('ingredients_delete') }}">Delete an ingredient</a></li>
-      </ul>
-
-<p></p>
 
       <p>User statistics</p>
       <ul>

@@ -41,4 +41,8 @@ class RecipeIngredient(db.Model):
     def __init__(self, amount):
         self.amount = amount
 
+    def get_ingredient_id(self):
+        return self.ingredient_id
 
+    def set_ingredient_id(self, id):
+        self.id = id

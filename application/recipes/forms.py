@@ -59,6 +59,7 @@ class DeleteForm(FlaskForm):
 
 class UpdateForm(FlaskForm):
 
+    id = IntegerField("Number", [validators.NumberRange(min=1)])
     name = StringField("Recipe name", [validators.Length(min=1)])
     timeNeeded = IntegerField("Time needed", [validators.NumberRange(min=1)])
     instructions = TextAreaField("Instructions", [validators.Length(min=1)])
