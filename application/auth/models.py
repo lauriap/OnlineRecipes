@@ -34,6 +34,9 @@ class User(db.Model):
     def is_authenticated(self):
         return True
 
+    def roles(self):
+        return ["ADMIN"]
+
     @staticmethod
     def list_top_contributors():
         stmt = text("SELECT Account.id, Account.name, COUNT(Recipe.id) FROM Account"

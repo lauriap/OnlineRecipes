@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_manager, login_required
 
 from application.recipes.models import Recipe, RecipeIngredient
 from application.recipes.forms import RecipeForm, DeleteForm, UpdateForm
@@ -24,14 +24,14 @@ def show_recipe(recipe_id):
 
 
 @app.route("/recipes/new/")
-@login_required
+@login_required(role="ADMIN")
 def recipes_form():
 
     return render_template("recipes/new.html", form = RecipeForm())
 
 
 @app.route("/recipes/update/<recipe_id>", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def recipes_updateform(recipe_id):
 
     recipe=Recipe.query.filter_by(id=recipe_id).first()
@@ -107,7 +107,7 @@ def recipes_updateform(recipe_id):
 
 
 @app.route("/recipes/update/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def recipes_update():
 
     form = UpdateForm(request.form)
@@ -206,39 +206,8 @@ def recipes_update():
 
     return redirect(url_for("recipes_index"))
 
-#KORJAA TÄMÄ!
-
-#    form = UpdateForm(request.form)
-
-#    if not form.validate():
-#        return redirect(url_for("recipes_updateform"))
-
-#    update_recipe = form.id.data
-
-#    return render_template("recipes/update
-
-#    Recipe.query.filter_by(id=del_recipe.get_id()).delete()
-
-
-#lisää tähän if-lause: jos id ylittää tietokannan maksimin, palauta virhe.
-#    recipe_id = form.id.data
-#    recipe = Recipe.query.filter_by(id=recipe_id).first()
-
-#    if form.name.data != "":
-#        recipe.name = form.name.data
-
-#    if form.timeNeeded.data is not None:
-#        recipe.timeNeeded = form.timeNeeded.data
-
-#    if form.instructions.data != "":
-#        recipe.instructions = form.instructions.data
-
-#    db.session().commit()
-
-#    return redirect(url_for("recipes_index"))
-
 @app.route("/recipes/", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def recipes_create():
 
     form = RecipeForm(request.form)
@@ -337,19 +306,20 @@ def recipes_create():
     return redirect(url_for("recipes_index"))
 
 @app.route("/recipes/topcontributors/", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def recipes_topcontributors():
 
     return render_template("recipes/topcontributors.html", topcontributors=User.list_top_contributors())
 
+
 @app.route("/recipes/delete/", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def recipes_deleteform():
 
     return render_template("recipes/delete.html", form = DeleteForm(), recipes = Recipe.query.order_by(Recipe.id).all())
 
 @app.route("/recipes/delete", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def recipes_delete():
 
     form = DeleteForm(request.form)
