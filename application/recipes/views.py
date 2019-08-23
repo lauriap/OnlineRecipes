@@ -145,19 +145,24 @@ def recipes_update():
             recipeing.ingredient_id = ing.get_id()
             db.session().add(recipeing)
 
+
     if form.ingredient_2.data and form.quantity_2.data:
         # update ingredient_id and amount for recipe_ingredient
         try:
             recipe_ingredients[1].ingredient_id = form.ingredient_2.data.get_id()
             recipe_ingredients[1].amount = form.quantity_2.data
         except:
+            #EI TOIMI AINAKAAN TÄLLAISENAAN!!!
+            if not form.ingredient_2.data and len(recipe_ingredients) >= 2:
+                    RecipeIngredient.query.filter_by(id=recipe_ingredients[1].id).delete()
+            else:
             # if the user is adding new ingredients and quantities, this takes care of it
-            ing=form.ingredient_2.data
-            recipeing = RecipeIngredient(form.quantity_2.data)
+                ing=form.ingredient_2.data
+                recipeing = RecipeIngredient(form.quantity_2.data)
 
-            recipeing.recipe_id = recipe.id
-            recipeing.ingredient_id = ing.get_id()
-            db.session().add(recipeing)
+                recipeing.recipe_id = recipe.id
+                recipeing.ingredient_id = ing.get_id()
+                db.session().add(recipeing)
 
     if form.ingredient_3.data and form.quantity_3.data:
         # update ingredient_id and amount for recipe_ingredient
