@@ -4,7 +4,7 @@
 <h2>Creating a new recipe</h2>
 <p>Insert the name, required time and instructions for a new recipe.</p>
 <form method="POST" action="{{ url_for('recipes_create') }}">
-  <table>
+  <table class="table">
     <tr>
       <td>
 	 {{ form.name.label }}

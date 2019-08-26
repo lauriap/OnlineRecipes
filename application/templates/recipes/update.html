@@ -5,7 +5,7 @@
 <h2>Editing a recipe</h2>
 <p>Make the required changes to the recipe and confirm.</p>
 <form method="POST" action="{{ url_for('recipes_update', recipe_id=recipe.id) }}">
-  <table>
+  <table class="table">
     <tr>
       <td>
          {{ form.id.label }}

@@ -4,7 +4,7 @@
 <h2>Deleting an ingredient</h2>
 <p>Insert the number of the ingredient you want to delete.</p>
 <form method="POST" action="{{ url_for('ingredients_delete') }}">
-  <table>
+  <table class="table">
     <tr>
       <td>
 	 {{ form.id.label }}
@@ -26,7 +26,7 @@
       </td>
     </tr>
 
-  <table>
+  <table class="table table-striped">
     <tr>
       <th>#</th>
       <th>Name</th>

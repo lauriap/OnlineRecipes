@@ -4,7 +4,7 @@
 <h2>Top contributors</h2>
 <p></p>
 
-<table>
+<table class="table table-striped">
   <tr>
     <td>
       <h3>Name</h3>
@@ -28,18 +28,6 @@
   {% endif %}     
 </table>
 
-<!---
-{% if topcontributors is defined %}
-<ul>
-  {% for user in topcontributors %}
-  <li>
-    {{user.name}} {{user.recipecount}}
-  </li>
-  {% endfor %}
-</ul>
-
-{% endif %}
--->
 {% endblock %}
 
 

@@ -4,7 +4,7 @@
 <h2>Updating an ingredient</h2>
 <p>Insert the number of the ingredient you want to edit and then insert the changes you want to make. Leaving a space blank means no changes will be made.</p>
 <form method="POST" action="{{ url_for('ingredients_update') }}">
-  <table>
+  <table class="table">
     <tr>
       <td>
          {{ form.id.label }}
@@ -46,7 +46,7 @@
 <p></p>
 <p></p>
 
-<table>
+<table class="table table-striped">
     <tr>
       <th>#</th>
       <th>Name</th>

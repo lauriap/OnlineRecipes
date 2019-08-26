@@ -10,6 +10,11 @@ from application.ingredients.models import Ingredient
 
 from application.auth.models import User
 
+@app.route("/")
+def start_page():
+    return render_template("/index.html")
+
+
 @app.route("/recipes/", methods=["GET"])
 def recipes_index():
     return render_template("recipes/list.html", recipes = Recipe.query.order_by(Recipe.id).all())

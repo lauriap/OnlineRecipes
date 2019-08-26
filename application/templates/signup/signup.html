@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
   
 {% block body %}
-<h2>Sign up to Online Recipes</h2>
+<h1>Sign up to Online Recipes</h1>
 <p>Insert your name, username and password to sign up to Online Recipes.</p>
 
   <form method="POST" action="{{ url_for('signup_create') }}">
-    <table>
+    <table class="table">
       <tr>
 	<td>
 	  {{ form.name.label }}

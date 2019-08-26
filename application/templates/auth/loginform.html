@@ -2,8 +2,21 @@
 
 {% block body %}
 {{ error }}
+
+<p></p>
+<h1>Login to Online Recipes</h1>
+<p></p>
+<p></p>
+<p></p>
+
+<p>Please enter your nickname and password to login.</p>
+
+<p></p>
+<p></p>
+<p></p>
+
 <form method="POST" action="{{ url_for('auth_login') }}">
-  <table>
+  <table class="table">
     <tr>
       <td>
 	{{ form.username.label }}

@@ -4,7 +4,7 @@
 <h2>Adding a new ingredient</h2>
 <p>Insert the name of the new ingredient.</p>
 <form method="POST" action="{{ url_for('ingredients_create') }}">
-  <table>
+  <table class="table">
     <tr>
       <td>
 	 {{ form.name.label }}
