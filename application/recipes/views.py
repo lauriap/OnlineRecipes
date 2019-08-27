@@ -23,10 +23,14 @@ def recipes_index():
 @app.route("/recipes/<recipe_id>/", methods=["GET"])
 def show_recipe(recipe_id):
 
+    query_recipe = Recipe.query.filter_by(id=recipe_id).first()
+    query_recipe_ingredients = RecipeIngredient.query.filter_by(recipe_id=recipe_id).all()
     query_ingredients = Ingredient.query.join(RecipeIngredient).join(Recipe).filter((RecipeIngredient.recipe_id == recipe_id) and (RecipeIngredient.ingredient_id == Ingredient.id)).all()
 
-    return render_template("recipes/fullrecipe.html", recipe=Recipe.query.filter_by(id=recipe_id).first(), recipe_ingredients=RecipeIngredient.query.filter_by(recipe_id=recipe_id).all(), ingredients=query_ingredients)
+    ing_recipeing_zip = zip(query_ingredients, query_recipe_ingredients)
 
+    # return render_template("recipes/fullrecipe.html", recipe=query_recipe, recipe_ingredients=query_recipe_ingredients, ingredients=query_ingredients) VANHA!
+    return render_template("recipes/fullrecipe.html", recipe=query_recipe, ings_recipeings=ing_recipeing_zip)
 
 @app.route("/recipes/new/")
 @login_required(role="ADMIN")

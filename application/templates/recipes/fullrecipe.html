@@ -12,35 +12,28 @@
 
 <h3>Ingredients</h3>
 
-<div>
-  <table  class="table" style="float: left">
-    <tr>
-      <th>Ingredient</th>
-    </tr>
-    {% for ingredient in ingredients %}
-    <tr>
-      <td>{{ ingredient.name }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+<p></p><p></p><p></p><p></p>
 
-&nbsp; &nbsp; &nbsp; &nbsp;
-
-  <table class="table" style="float: left">
-    <tr>
-      <th>Amount</th>
-    </tr>
-    {% for recipe_ingredient in recipe_ingredients %}
-    <tr>
-      <td>{{ recipe_ingredient.amount }}</td>
-    </tr>
-    {% endfor %}
-  </table>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>Ingredient</h4>
+    </div>
+    <div class="col">
+      <h4>Amount</h4>
+    </div>
+  </div>
+  {% for ingredient, recipe_ingredient in ings_recipeings %}
+  <div class="row">
+    <div class="col">{{ ingredient.name }}</div>
+    <div class="col">{{ recipe_ingredient.amount }}</div>
+  </div>
+  {% endfor %}
 </div>
 
-<p style="clear:both"></p><p></p>
+<p></p><p></p>
 
-<h3 style="clear:both">Instructions</h3>
+<h3>Instructions</h3>
 
 <p></p>
 
