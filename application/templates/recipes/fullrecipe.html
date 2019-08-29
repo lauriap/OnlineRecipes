@@ -14,22 +14,18 @@
 
 <p></p><p></p><p></p><p></p>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h4>Ingredient</h4>
-    </div>
-    <div class="col">
-      <h4>Amount</h4>
-    </div>
-  </div>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Amount</th>
+  </tr>
   {% for ingredient, recipe_ingredient in ings_recipeings %}
-  <div class="row">
-    <div class="col">{{ ingredient.name }}</div>
-    <div class="col">{{ recipe_ingredient.amount }}</div>
-  </div>
+  <tr>
+    <td>{{ ingredient.name }}</td>
+    <td>{{ recipe_ingredient.amount }}</td>
+  </tr>
   {% endfor %}
-</div>
+</table>
 
 <p></p><p></p>
 
