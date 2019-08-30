@@ -394,7 +394,7 @@ def recipes_topcontributors():
 @login_required(role="ADMIN")
 def recipes_statistics():
 
-    return render_template("recipes/statistics.html", recipe_count=Recipe.get_recipe_count(), most_used_ing_name=Recipe.get_most_used_ingredient()[0].get("name"), most_used_ing_count=Recipe.get_most_used_ingredient()[1].get("uses"))
+    return render_template("recipes/statistics.html", recipe_count=Recipe.get_recipe_count(), most_used_ing_name=Recipe.get_most_used_ingredient()[0].get("name"), most_used_ing_count=Recipe.get_most_used_ingredient()[0].get("uses"))
 
 @app.route("/recipes/delete/", methods=["GET"])
 @login_required(role="ADMIN")

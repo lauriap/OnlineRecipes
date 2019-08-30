@@ -42,7 +42,8 @@ class Recipe(db.Model):
     def get_most_used_ingredient():
         stmt = text("SELECT Ingredient.name, COUNT(Recipe_Ingredient.id) FROM Ingredient"
                     " INNER JOIN Recipe_Ingredient ON Ingredient.id = Recipe_Ingredient.ingredient_id"
-                    " GROUP BY ingredient.name;")
+                    " GROUP BY ingredient.name"
+                    " ORDER BY COUNT(Recipe_Ingredient.id) DESC;")
 
         res = db.engine.execute(stmt)
 
@@ -50,22 +51,6 @@ class Recipe(db.Model):
         for row in res:
             response.append({"name":row[0], "uses":row[1]})
 
-        most_used_ing_name = response[0].get("name")
-        return response
-
-    @staticmethod
-    def list_top_contributors():
-        stmt = text("SELECT Account.id, Account.name, COUNT(Recipe.id) AS RecipeCount FROM Account"
-                    " LEFT JOIN Recipe ON Recipe.account_id = Account.id"
-                    " GROUP BY account.id, account.name"
-                    " ORDER BY RecipeCount;")
-
-        res = db.engine.execute(stmt)
-
-        response = []
-        for row in res:
-            print(row)
-            response.append({"name":row[1], "recipecount":row[2]})
         return response
 
 
