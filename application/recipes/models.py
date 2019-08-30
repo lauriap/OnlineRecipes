@@ -57,7 +57,9 @@ class Recipe(db.Model):
     def list_top_contributors():
         stmt = text("SELECT Account.id, Account.name, COUNT(Recipe.id) FROM Account"
                     " LEFT JOIN Recipe ON Recipe.account_id = Account.id"
-                    " GROUP BY account.id, account.name;")
+                    " GROUP BY account.id, account.name"
+                    " ORDER BY COUNT(Recipe.id);")
+
         res = db.engine.execute(stmt)
 
         response = []
