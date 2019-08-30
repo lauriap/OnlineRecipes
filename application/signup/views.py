@@ -15,6 +15,12 @@ def signup_create():
     if not form.validate():
         return render_template("signup/signup.html", form = form)
 
+    alreadyExistsUser = User.query.filter_by(username=form.username.data).first()
+
+    if alreadyExistsUser:
+        form.username.errors.append("The username is already in use. Please choose another username.")
+        return render_template("signup/signup.html", form = form)
+
     s = User(form.name.data, form.username.data, form.password.data)
 
     db.session().add(s)

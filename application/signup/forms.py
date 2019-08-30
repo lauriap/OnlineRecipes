@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, validators
+from application.auth.models import User
 
 class SignUpForm(FlaskForm):
     name = StringField("Name", [validators.Length(min=1)])
