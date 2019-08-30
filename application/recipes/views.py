@@ -111,8 +111,6 @@ def recipes_updateform(recipe_id):
     except:
         pass
 
-
-
     return render_template("recipes/update.html", form = updateform, recipe=Recipe.query.filter_by(id=recipe_id).first(), recipe_ingredients=RecipeIngredient.query.filter_by(recipe_id=recipe_id).all(), ingredients=query_ingredients)
 
 
@@ -161,7 +159,6 @@ def recipes_update():
             recipe_ingredients[1].ingredient_id = form.ingredient_2.data.get_id()
             recipe_ingredients[1].amount = form.quantity_2.data
         except:
-            #EI TOIMI AINAKAAN TÄLLAISENAAN!!!
             if not form.ingredient_2.data and len(recipe_ingredients) >= 2:
                     RecipeIngredient.query.filter_by(id=recipe_ingredients[1].id).delete()
             else:
@@ -394,6 +391,11 @@ def recipes_topcontributors():
 
     return render_template("recipes/topcontributors.html", topcontributors=User.list_top_contributors())
 
+@app.route("/recipes/statistics/", methods=["GET"])
+@login_required(role="ADMIN")
+def recipes_statistics():
+
+    return render_template("recipes/statistics.html", recipe_count=Recipe.get_recipe_count(), most_used_ing_name=Recipe.get_most_used_ingredient()[0].get("name"), most_used_ing_count=Recipe.get_most_used_ingredient()[1].get("uses"))
 
 @app.route("/recipes/delete/", methods=["GET"])
 @login_required(role="ADMIN")

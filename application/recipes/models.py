@@ -25,6 +25,48 @@ class Recipe(db.Model):
     def get_id(self):
         return self.id
 
+    @staticmethod
+    def get_recipe_count():
+        stmt = text("SELECT COUNT(Recipe.id) FROM Recipe;")
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"count":row[0]})
+
+        count = response[0].get("count")
+        return count
+
+    @staticmethod
+    def get_most_used_ingredient():
+        stmt = text("SELECT Ingredient.name, COUNT(Recipe_Ingredient.id) FROM Ingredient"
+                    " LEFT JOIN Recipe_Ingredient ON Ingredient.id = Recipe_Ingredient.ingredient_id"
+                    " GROUP BY ingredient.name;")
+
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"name":row[0], "uses":row[1]})
+
+        most_used_ing_name = response[0].get("name")
+        return response
+
+    @staticmethod
+    def list_top_contributors():
+        stmt = text("SELECT Account.id, Account.name, COUNT(Recipe.id) FROM Account"
+                    " LEFT JOIN Recipe ON Recipe.account_id = Account.id"
+                    " GROUP BY account.id, account.name;")
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append({"name":row[1], "recipecount":row[2]})
+
+        return response
+
+
 
 
 class RecipeIngredient(db.Model):
