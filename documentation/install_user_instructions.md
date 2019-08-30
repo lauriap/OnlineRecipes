@@ -74,8 +74,10 @@ Install the following programs to your computer. Attached you will also find som
 
 Online Recipes provides the users with a possibility explore recipes written by the Online Recipes community as well as adding her own recipes for others to view. The website enables adding, listing, updating and deleting ingredients and recipes. The features can be accessed from the menu bar in the top edge of the website.
 
+Apart from listing the recipes, registering and logging in is required. Registering and logging in can be done by clicking the links in the top-right corner of the website and inserting the necessary information.
+
 Once a recipe is created, the recipe can be viewed by selecting it from the recipe list. Additionally, once a view of a single recipe has been opened, the user is given the choice of editing the recipe. At an early stage of the project, it is possible to update both your own and others' recipes. This feature will be monitored closely and if it is being misused, it will be removed.
 
 The website also tracks the top contributors to the site: The more recipes you contribute, the higher you will be on the top list! Users have the option of removing redundant or possibly offensive content from the site. The site will also be monitored by the admin for misconduct.
 
-We wish you enjoy using Online Recipes - enjoy!
+We hope you enjoy using Online Recipes - bon appétit!
