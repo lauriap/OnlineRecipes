@@ -41,7 +41,7 @@ class Recipe(db.Model):
     @staticmethod
     def get_most_used_ingredient():
         stmt = text("SELECT Ingredient.name, COUNT(Recipe_Ingredient.id) FROM Ingredient"
-                    " LEFT JOIN Recipe_Ingredient ON Ingredient.id = Recipe_Ingredient.ingredient_id"
+                    " INNER JOIN Recipe_Ingredient ON Ingredient.id = Recipe_Ingredient.ingredient_id"
                     " GROUP BY ingredient.name;")
 
         res = db.engine.execute(stmt)
@@ -64,11 +64,9 @@ class Recipe(db.Model):
 
         response = []
         for row in res:
+            print(row)
             response.append({"name":row[1], "recipecount":row[2]})
-
         return response
-
-
 
 
 class RecipeIngredient(db.Model):

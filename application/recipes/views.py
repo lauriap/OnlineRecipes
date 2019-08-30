@@ -29,7 +29,6 @@ def show_recipe(recipe_id):
 
     ing_recipeing_zip = zip(query_ingredients, query_recipe_ingredients)
 
-    # return render_template("recipes/fullrecipe.html", recipe=query_recipe, recipe_ingredients=query_recipe_ingredients, ingredients=query_ingredients) VANHA!
     return render_template("recipes/fullrecipe.html", recipe=query_recipe, ings_recipeings=ing_recipeing_zip)
 
 @app.route("/recipes/new/")
