@@ -55,10 +55,10 @@ class Recipe(db.Model):
 
     @staticmethod
     def list_top_contributors():
-        stmt = text("SELECT Account.id, Account.name, COUNT(Recipe.id) FROM Account"
+        stmt = text("SELECT Account.id, Account.name, COUNT(Recipe.id) AS RecipeCount FROM Account"
                     " LEFT JOIN Recipe ON Recipe.account_id = Account.id"
                     " GROUP BY account.id, account.name"
-                    " ORDER BY COUNT(Recipe.id);")
+                    " ORDER BY RecipeCount;")
 
         res = db.engine.execute(stmt)
 
