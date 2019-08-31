@@ -1,6 +1,6 @@
-#Database CREATE TABLE -files
+# Database CREATE TABLE commands
 
-##Ingredient table
+## Ingredient table
 
 CREATE TABLE ingredient (
 	id INTEGER NOT NULL, 
@@ -8,7 +8,7 @@ CREATE TABLE ingredient (
 	PRIMARY KEY (id)
 )
 
-##Recipe table
+## Recipe table
 
 CREATE TABLE recipe (
 	id INTEGER NOT NULL, 
@@ -20,7 +20,7 @@ CREATE TABLE recipe (
 	FOREIGN KEY(account_id) REFERENCES account (id)
 )
 
-##Account table
+## Account table
 
 CREATE TABLE account (
 	id INTEGER NOT NULL, 
@@ -33,7 +33,7 @@ CREATE TABLE account (
 	UNIQUE (username)
 )
 
-##Recipe_Ingredient table
+## Recipe_Ingredient table
 
 CREATE TABLE recipe_ingredient (
 	id INTEGER NOT NULL, 
